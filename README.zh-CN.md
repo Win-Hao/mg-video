@@ -23,23 +23,37 @@
 
 ## 十五种画风
 
-| 风格卡 | 认得出来靠 |
-|---|---|
-| `01-paperclip-sticker` | 白边实物贴纸，一张大桌子一个镜头，图表按真实比例 |
-| `02-flat-vector` | 扁平几何，弹性入场，一次只有一个主角 |
-| `03-isometric` | 标准 30° 等距，按深度排序，组件之间走管道 |
-| `04-hud` | 两种色相，线框、扫描、锁定 |
-| `05-glassmorphism` | 磨砂卡片浮在流动的彩色光上 |
-| `06-bauhaus` | 网格，三原色加黑，一拍一个动作 |
-| `07-variety-captions` | 多层描边的圆胖字，弹出，情绪符号（综艺花字） |
-| `08-pixel` | 小画布放大，有限调色板，逐帧精灵图 |
-| `09-cel-boil` | 线条每几帧抖一次，每秒 12 张，手绘特效 |
-| `10-one-line` | 一根线画到底，线变成面 |
-| `11-morph` | 一个轮廓连续变成另一个 |
-| `12-collage` | 剪刀剪的边，网点，一顿一顿的动作 |
-| `13-liquid` | 会融合、分裂的液滴 |
-| `14-synthwave` | 条纹夕阳，霓虹网格，镀铬字，录像带质感 |
-| `15-3d-material` | 真实材质，柔光，浅景深（Blender + Cycles） |
+每张卡一支做好的 10 秒成片，都是用这个 skill 做出来、按评审循环改过的。点预览图看带声音的 720p MP4；配乐和音效全是 skill 自带的 `mgsound` 合成的。
+
+<table>
+<tr>
+<td align="center" width="33%"><a href="docs/films/01-paperclip-sticker.mp4"><img src="docs/films/01-paperclip-sticker.gif" alt="01-paperclip-sticker: 地球上的水都在哪" width="100%"></a><br><b><code>01-paperclip-sticker</code></b><br><sub>白边实物贴纸，一张大桌子一个镜头，图表按真实比例</sub></td>
+<td align="center" width="33%"><a href="docs/films/02-flat-vector.mp4"><img src="docs/films/02-flat-vector.gif" alt="02-flat-vector: 一颗番茄的旅程" width="100%"></a><br><b><code>02-flat-vector</code></b><br><sub>扁平几何，弹性入场，一次只有一个主角</sub></td>
+<td align="center" width="33%"><a href="docs/films/03-isometric.mp4"><img src="docs/films/03-isometric.gif" alt="03-isometric: 图书归还机" width="100%"></a><br><b><code>03-isometric</code></b><br><sub>标准 30° 等距，按深度排序，组件之间走管道</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="docs/films/04-hud.mp4"><img src="docs/films/04-hud.gif" alt="04-hud: 着陆程序" width="100%"></a><br><b><code>04-hud</code></b><br><sub>两种色相，线框、扫描、锁定</sub></td>
+<td align="center" width="33%"><a href="docs/films/05-glassmorphism.mp4"><img src="docs/films/05-glassmorphism.gif" alt="05-glassmorphism: 天气卡片" width="100%"></a><br><b><code>05-glassmorphism</code></b><br><sub>磨砂卡片浮在流动的彩色光上</sub></td>
+<td align="center" width="33%"><a href="docs/films/06-bauhaus.mp4"><img src="docs/films/06-bauhaus.gif" alt="06-bauhaus: 篮球赛海报" width="100%"></a><br><b><code>06-bauhaus</code></b><br><sub>网格，三原色加黑，一拍一个动作</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="docs/films/07-variety-captions.mp4"><img src="docs/films/07-variety-captions.gif" alt="07-variety-captions: 给实拍视频加花字" width="100%"></a><br><b><code>07-variety-captions</code></b><br><sub>多层描边的圆胖字，弹出，情绪符号（综艺花字）</sub></td>
+<td align="center" width="33%"><a href="docs/films/08-pixel.mp4"><img src="docs/films/08-pixel.gif" alt="08-pixel: 夕阳下钓鱼" width="100%"></a><br><b><code>08-pixel</code></b><br><sub>小画布放大，有限调色板，逐帧精灵图</sub></td>
+<td align="center" width="33%"><a href="docs/films/09-cel-boil.mp4"><img src="docs/films/09-cel-boil.gif" alt="09-cel-boil: 闹钟醒了" width="100%"></a><br><b><code>09-cel-boil</code></b><br><sub>线条每几帧抖一次，每秒 12 张，手绘特效</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="docs/films/10-one-line.mp4"><img src="docs/films/10-one-line.gif" alt="10-one-line: 骑行徽章" width="100%"></a><br><b><code>10-one-line</code></b><br><sub>一根线画到底，线变成面</sub></td>
+<td align="center" width="33%"><a href="docs/films/11-morph.mp4"><img src="docs/films/11-morph.gif" alt="11-morph: 月亮变成灵感" width="100%"></a><br><b><code>11-morph</code></b><br><sub>一个轮廓连续变成另一个</sub></td>
+<td align="center" width="33%"><a href="docs/films/12-collage.mp4"><img src="docs/films/12-collage.gif" alt="12-collage: 猫头鹰日报" width="100%"></a><br><b><code>12-collage</code></b><br><sub>剪刀剪的边，网点，一顿一顿的动作</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="docs/films/13-liquid.mp4"><img src="docs/films/13-liquid.gif" alt="13-liquid: 液态金属拼成一个字" width="100%"></a><br><b><code>13-liquid</code></b><br><sub>会融合、分裂的液滴</sub></td>
+<td align="center" width="33%"><a href="docs/films/14-synthwave.mp4"><img src="docs/films/14-synthwave.gif" alt="14-synthwave: 午夜电台台标" width="100%"></a><br><b><code>14-synthwave</code></b><br><sub>条纹夕阳，霓虹网格，镀铬字，录像带质感</sub></td>
+<td align="center" width="33%"><a href="docs/films/15-3d-material.mp4"><img src="docs/films/15-3d-material.gif" alt="15-3d-material: 玻璃珠里升起一个词" width="100%"></a><br><b><code>15-3d-material</code></b><br><sub>真实材质，柔光，浅景深（Blender + Cycles）</sub></td>
+</tr>
+</table>
+
+片子里用到的第三方素材：NOAA、黄石公园和 Wikimedia Commons 上的照片（01，公有领域和 CC0），19 世纪版画和旧报纸（12，公有领域），Pexels 上 cottonbro studio 的《Burnt Toast》实拍（07，Pexels 许可），Poly Haven 的 HDRI（15，CC0），以及 OFL 字体（Noto Sans/Serif SC、JetBrains Mono、抖音美好体、Fusion Pixel、源样圆体、M PLUS Rounded 1c）。其余都是代码画的、代码合成的。
 
 ## 流程
 
