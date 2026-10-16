@@ -1,0 +1,15 @@
+{
+  "duration": __DUR__,
+  "fps": __FPS__,
+  "music": {
+    "bed": "__RECIPE__", "bpm": null, "drop": null, "outro": null,
+    "note": "passed to music.bed(): drop = the picture's climax (a bar line lands on it), outro = start of the end hold; pick bpm so a beat is a whole number of frames (112.5 at 30 fps = 16); \"bed\": null for clips that deliver only the effects stem"
+  },
+  "events": [
+    { "id": "title", "t": 0.3, "sfx": "pop", "args": { "pitch": 1.0 }, "note": "a picture event and its one sound, checked by sync.py; the picture reads the same t (the template's title pops in here)" },
+    { "id": "ticks", "t": 1.0, "times": [1.0, 1.1333, 1.2667], "sfx": "tick", "args": { "kind": "wood" }, "gain": -6, "bus": "sfx", "note": "example of a repeated hit: one sound per time, each checked; bus sfx = no ducking (dense small hits)" }
+  ],
+  "motion": [
+    { "id": "title-swish", "t": 0.3, "sfx": "swish", "args": { "dur": 0.25 }, "gain": -12, "note": "whooshes, risers, swells, pen strokes: sounds without a sharp onset; played on the sfx bus without ducking, not checked by sync.py" }
+  ]
+}

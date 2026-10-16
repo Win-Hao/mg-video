@@ -1,0 +1,128 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="icon" href="data:,">
+<title>__NAME__</title>
+<style>
+  /* Put fonts in ./fonts and declare them here; build() checks them with needFonts(). */
+  /* @font-face { font-family: "Title"; src: url("fonts/xxx.ttf"); font-display: block; } */
+  /* The page is magenta on purpose: a frame where a shake or a moved stage uncovers it shows it at once, and spec.py
+     fails it. Paint the film's background inside #stage. For render.mjs --alpha make the page transparent. */
+  html, body { margin: 0; width: __W__px; height: __H__px; overflow: hidden; background: #ff00ff; }
+  #stage { position: absolute; left: 0; top: 0; width: __W__px; height: __H__px; overflow: hidden; }
+  #stage > canvas { position: absolute; left: 0; top: 0; }
+</style>
+<script>
+// Every failure reaches render.mjs through window.__error, which stops the render instead of hanging or writing
+// blank frames: uncaught errors (a module script included), rejected promises, a lost WebGL context on any canvas.
+function fail(why) { window.__error ||= String(why); console.error(why); }
+addEventListener('error', (e) => fail(e.error?.stack || e.message));
+addEventListener('unhandledrejection', (e) => fail(e.reason?.stack || e.reason));
+addEventListener('webglcontextlost', () => fail('WebGL context lost (GPU reset, or too much work queued at once)'), true);
+</script>
+</head><body>
+<div id="stage"><canvas id="c" width="__W__" height="__H__"></canvas></div>
+<script type="module">
+// Each frame depends only on t: no requestAnimationFrame, CSS animations or transitions, setTimeout, Date.now, Math.random.
+let V, cues;   // V = video.json (width, height, fps, duration); cues = cues.json (the beat sheet audio.py also reads)
+const Q = new URLSearchParams(location.search);   // debug layers: render.mjs "index.html?layer=text" (the server ignores the query)
+
+// ---------- helpers (delete what you don't use)
+// Compare times by frame number: a cue written as 3.6667 is later than frame 110 (110/30 = 3.66666…), so `t >= 3.6667`
+// is one frame late and at(t, 3.6667) isn't.
+const frameOf = (t) => Math.round(t * V.fps);
+const at = (t, sec) => frameOf(t) >= frameOf(sec);              // has the cue at `sec` happened by time t?
+const snap = (t) => frameOf(t) / V.fps;                         // t on the frame grid: hard cuts under sub-frame motion blur
+// Drawings per second from a frame table. At 30 fps "on twos" is 2 frames a drawing = 15/s; 12/s holds 2,3,2,3… frames;
+// 24/s holds 1,1,1,2…; 10/s holds 3. t0 restarts the table at a cue so the cue starts a drawing. Return the index
+// from render(t) as its key and the renderer reuses the screenshot while a drawing holds.
+const drawingIndex = (t, perSecond, t0 = 0) => Math.ceil((frameOf(t) - frameOf(t0) + 1) * perSecond / V.fps) - 1;
+const drawing = (t, per = 2) => Math.floor(frameOf(t) / per);  // integer index, a new drawing every `per` frames
+const onTwos = (t, per = 2) => drawing(t, per) * per / V.fps;   // the time of the drawing on screen
+function jit(seed, i) {                                          // deterministic jitter in [-1, 1) for drawing i of element `seed`
+  let h = Math.imul(seed ^ 0x9e3779b9, 0x85ebca6b) ^ Math.imul(i + 1, 0xc2b2ae35);
+  h = Math.imul(h ^ (h >>> 16), 0x7feb352d); h = Math.imul(h ^ (h >>> 15), 0x846ca68b);
+  return ((h ^ (h >>> 16)) >>> 0) / 2147483648 - 1;
+}
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, t0, t1) => clamp((t - t0) / (t1 - t0));            // how far t is through [t0, t1]
+const lerp = (a, b, u) => a + (b - a) * u;
+// cubic-bezier(x1, y1, x2, y2), same meaning as in CSS
+function bezier(x1, y1, x2, y2) {
+  const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx, cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+  const X = (s) => ((ax * s + bx) * s + cx) * s, Y = (s) => ((ay * s + by) * s + cy) * s, dX = (s) => (3 * ax * s + 2 * bx) * s + cx;
+  return (u) => {
+    if (u <= 0) return 0; if (u >= 1) return 1;
+    let s = u;
+    for (let i = 0; i < 8; i++) { const d = dX(s); if (Math.abs(d) < 1e-6) break; s -= (X(s) - u) / d; }
+    return Y(clamp(s));
+  };
+}
+const ease = { inOut: bezier(0.65, 0, 0.35, 1), out: bezier(0.22, 1, 0.36, 1), back: bezier(0.34, 1.56, 0.64, 1) };   // back overshoots ~9.8%
+const io2 = (u) => (u < 0.5 ? 2 * u * u : 1 - 2 * (1 - u) * (1 - u));   // power2.inOut, no overshoot (mechanical styles)
+// ease-out with a set overshoot: peak 4s³ / 27(s+1)², s = 1.5 → 8%, s = 1.3 → 6.1%
+const backOut = (u, s = 1.5) => { u = clamp(u); const v = u - 1; return 1 + (s + 1) * v * v * v + s * v * v; };
+function spring(u, zeta = 0.55, omega = 12) {   // u = seconds since the move started; 0 → 1, overshoots 12.6% at the defaults
+  if (u <= 0) return 0;
+  const wd = omega * Math.sqrt(1 - zeta * zeta);
+  return 1 - Math.exp(-zeta * omega * u) * (Math.cos(wd * u) + (zeta * omega / wd) * Math.sin(wd * u));
+}
+function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }   // seeded
+// Throws unless each font loaded and has a glyph for every character of `text`: pass the strings actually on screen
+// (default: the page's DOM text). A character the font lacks falls through to the next family in the list, so it
+// draws differently behind two different fallback lists (macOS fonts; elsewhere only the loading is checked).
+async function needFonts(specs, text = document.body.innerText) {
+  const g = new OffscreenCanvas(128, 128).getContext('2d', { willReadFrequently: true });
+  const ink = (font, ch) => { g.clearRect(0, 0, 128, 128); g.font = font; g.fillText(ch, 16, 96); return g.getImageData(0, 0, 128, 128).data; };
+  const chars = [...new Set(text.replace(/\s/g, ''))];
+  for (const s of specs) {
+    await document.fonts.load(s, text).catch((e) => { throw new Error(`font ${s} failed to load (${e.message}): is the file in fonts/ and the @font-face path right?`); });
+    const f = s.replace(/[\d.]+px/, '64px');
+    const missing = chars.filter((ch) => { const a = ink(f + ', "Courier New", "Songti SC"', ch), b = ink(f + ', Helvetica, "PingFang SC"', ch); return a.some((v, i) => v !== b[i]); });
+    if (missing.length) throw new Error(`font ${s} did not load or has no glyph for: ${missing.join(' ')}`);
+  }
+}
+
+// ---------- the film (this example pops a title in on its cue; replace it)
+const TITLE = '__NAME__';
+let ctx, T = {};
+async function build() {
+  // Import modules here, not with a static import at the top, so a module that fails reports through __error:
+  // const THREE = await import('./node_modules/three/build/three.module.js');
+  V = await (await fetch('video.json')).json();
+  cues = await (await fetch('cues.json')).json();
+  for (const e of cues.events) T[e.id] = e.t;
+  // await needFonts(['700 120px "Title"'], TITLE + '画面上的其他字');
+  ctx = document.getElementById('c').getContext('2d');
+  // WebGL: getContext('webgl2', { preserveDrawingBuffer: true }), or screenshots come out black.
+  // Build the DOM / SVG / canvas / three.js scene here; precompute physics and particle paths.
+}
+
+function title(t) {   // the title at time t, shared by render() and boxes() so they agree; its box comes from glyph metrics
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.font = '700 120px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  const m = ctx.measureText(TITLE), s = backOut(prog(t, T.title, T.title + 0.4)), x = V.width / 2, y = V.height * 0.55;
+  return { x, y, s, box: [x - m.actualBoundingBoxLeft * s, y - m.actualBoundingBoxAscent * s,
+    (m.actualBoundingBoxLeft + m.actualBoundingBoxRight) * s, (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) * s] };
+}
+
+window.render = async (t) => {
+  // Set everything for time t. Split into shots by cue: if (at(t, T.title)) …
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, V.width, V.height);
+  if (Q.get('layer') !== 'text') { ctx.fillStyle = '#16161d'; ctx.fillRect(0, 0, V.width, V.height); }   // ?layer=text: text alone over magenta
+  const ti = title(t);
+  if (ti.s > 0) { ctx.setTransform(ti.s, 0, 0, ti.s, ti.x, ti.y); ctx.fillStyle = '#f4f1ea'; ctx.fillText(TITLE, 0, 0); }
+  // Return a key (e.g. drawingIndex(t, 12)) to let the renderer reuse the previous screenshot when nothing changed.
+};
+
+// Optional: named boxes in film pixels, {name: [x, y, w, h]} or polygons {name: [[x, y], ...]}, for measure.py and
+// reviewers. render.mjs calls it right after render(t): whole-film renders write out/boxes.json, --boxes writes only that.
+// Leave out what isn't on screen; text boxes come from glyph metrics, not DOM boxes or line height.
+window.boxes = (t) => { const ti = title(t); return ti.s > 0 ? { title: ti.box } : {}; };
+
+build()
+  .then(() => window.render(0))
+  .then(() => { window.__ready = true; })
+  .catch((e) => fail((e && e.stack) || e));
+</script>
+</body></html>

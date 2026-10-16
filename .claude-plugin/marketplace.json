@@ -1,0 +1,14 @@
+{
+  "name": "mg-video",
+  "owner": {
+    "name": "Win-Hao"
+  },
+  "plugins": [
+    {
+      "name": "mg-video",
+      "source": "./",
+      "description": "Motion-graphics clips in code: 15 style cards, one beat sheet for picture and sound, measurable checks, independent review."
+    }
+  ],
+  "description": "mg-video: make a polished motion-graphics (MG) clip in code. Pick one of 15 style cards, write a prompt from a template, build key-frame stills first, animate a web page (or a Blender scene) frame by frame, place music and synthesized sound effects from the same beat sheet, check the encoded film with fixed-definition scripts, and revise until an independent reviewer passes it."
+}

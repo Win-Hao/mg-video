@@ -1,0 +1,18 @@
+{
+  "name": "mg-video",
+  "version": "0.1.0",
+  "description": "Make a polished motion-graphics clip in code, in one of 15 established styles (paperclip sticker, flat vector, isometric, HUD, glassmorphism, Bauhaus, variety captions, pixel, cel boil, one line, morph, collage, liquid, synthwave, 3D material). One beat sheet drives picture, music and sound effects; key frames first; deterministic frame-by-frame rendering; measurable checks and an independent review loop.",
+  "keywords": [
+    "skill",
+    "video",
+    "motion-graphics",
+    "animation",
+    "sound-design",
+    "playwright",
+    "blender"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Win-Hao"
+  }
+}
