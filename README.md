@@ -30,33 +30,33 @@ What the skill adds on top of "write some animation code":
 
 ## The fifteen styles
 
-One finished 10-second film per card, each built with this skill and revised through its review loop. Click a preview for the 720p MP4 with sound; music and effects are all synthesized by the skill's `mgsound` library. On-screen text is Chinese because the test batch was made for a Chinese audience; the cards work in any language.
+One finished 10-second film per card, each built with this skill and revised through its review loop. Click a preview to play the 720p MP4 with sound, or watch all fifteen on the [gallery page](https://win-hao.github.io/mg-video/). Music and effects are all synthesized by the skill's `mgsound` library. On-screen text is Chinese because the test batch was made for a Chinese audience; the cards work in any language.
 
 <table>
 <tr>
-<td align="center" width="33%"><a href="docs/films/01-paperclip-sticker.mp4"><img src="docs/films/01-paperclip-sticker.gif" alt="01-paperclip-sticker: where Earth's water is" width="100%"></a><br><b><code>01-paperclip-sticker</code></b><br><sub>white-bordered object stickers, one big table and one camera, true charts</sub></td>
-<td align="center" width="33%"><a href="docs/films/02-flat-vector.mp4"><img src="docs/films/02-flat-vector.gif" alt="02-flat-vector: a tomato's journey" width="100%"></a><br><b><code>02-flat-vector</code></b><br><sub>flat geometry, elastic entrances, one lead at a time</sub></td>
-<td align="center" width="33%"><a href="docs/films/03-isometric.mp4"><img src="docs/films/03-isometric.gif" alt="03-isometric: a library returns machine" width="100%"></a><br><b><code>03-isometric</code></b><br><sub>true 30° isometric, depth-sorted objects, pipes between components</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/01-paperclip-sticker.mp4"><img src="docs/films/01-paperclip-sticker.gif" alt="01-paperclip-sticker: where Earth's water is" width="100%"></a><br><b><code>01-paperclip-sticker</code></b><br><sub>white-bordered object stickers, one big table and one camera, true charts</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/02-flat-vector.mp4"><img src="docs/films/02-flat-vector.gif" alt="02-flat-vector: a tomato's journey" width="100%"></a><br><b><code>02-flat-vector</code></b><br><sub>flat geometry, elastic entrances, one lead at a time</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/03-isometric.mp4"><img src="docs/films/03-isometric.gif" alt="03-isometric: a library returns machine" width="100%"></a><br><b><code>03-isometric</code></b><br><sub>true 30° isometric, depth-sorted objects, pipes between components</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><a href="docs/films/04-hud.mp4"><img src="docs/films/04-hud.gif" alt="04-hud: a landing sequence" width="100%"></a><br><b><code>04-hud</code></b><br><sub>two hues, wireframes, scans, locks</sub></td>
-<td align="center" width="33%"><a href="docs/films/05-glassmorphism.mp4"><img src="docs/films/05-glassmorphism.gif" alt="05-glassmorphism: a weather widget" width="100%"></a><br><b><code>05-glassmorphism</code></b><br><sub>frosted cards over drifting colour light</sub></td>
-<td align="center" width="33%"><a href="docs/films/06-bauhaus.mp4"><img src="docs/films/06-bauhaus.gif" alt="06-bauhaus: a basketball poster" width="100%"></a><br><b><code>06-bauhaus</code></b><br><sub>grid, primaries plus black, one action per beat</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/04-hud.mp4"><img src="docs/films/04-hud.gif" alt="04-hud: a landing sequence" width="100%"></a><br><b><code>04-hud</code></b><br><sub>two hues, wireframes, scans, locks</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/05-glassmorphism.mp4"><img src="docs/films/05-glassmorphism.gif" alt="05-glassmorphism: a weather widget" width="100%"></a><br><b><code>05-glassmorphism</code></b><br><sub>frosted cards over drifting colour light</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/06-bauhaus.mp4"><img src="docs/films/06-bauhaus.gif" alt="06-bauhaus: a basketball poster" width="100%"></a><br><b><code>06-bauhaus</code></b><br><sub>grid, primaries plus black, one action per beat</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><a href="docs/films/07-variety-captions.mp4"><img src="docs/films/07-variety-captions.gif" alt="07-variety-captions: captions over footage" width="100%"></a><br><b><code>07-variety-captions</code></b><br><sub>multi-outline chubby text, pops, emotion symbols</sub></td>
-<td align="center" width="33%"><a href="docs/films/08-pixel.mp4"><img src="docs/films/08-pixel.gif" alt="08-pixel: sunset fishing" width="100%"></a><br><b><code>08-pixel</code></b><br><sub>small canvas scaled up, limited palette, frame-by-frame sprites</sub></td>
-<td align="center" width="33%"><a href="docs/films/09-cel-boil.mp4"><img src="docs/films/09-cel-boil.gif" alt="09-cel-boil: an alarm clock wakes up" width="100%"></a><br><b><code>09-cel-boil</code></b><br><sub>lines that tremble every few frames, 12 drawings/s, hand-drawn effects</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/07-variety-captions.mp4"><img src="docs/films/07-variety-captions.gif" alt="07-variety-captions: captions over footage" width="100%"></a><br><b><code>07-variety-captions</code></b><br><sub>multi-outline chubby text, pops, emotion symbols</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/08-pixel.mp4"><img src="docs/films/08-pixel.gif" alt="08-pixel: sunset fishing" width="100%"></a><br><b><code>08-pixel</code></b><br><sub>small canvas scaled up, limited palette, frame-by-frame sprites</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/09-cel-boil.mp4"><img src="docs/films/09-cel-boil.gif" alt="09-cel-boil: an alarm clock wakes up" width="100%"></a><br><b><code>09-cel-boil</code></b><br><sub>lines that tremble every few frames, 12 drawings/s, hand-drawn effects</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><a href="docs/films/10-one-line.mp4"><img src="docs/films/10-one-line.gif" alt="10-one-line: a cycling badge" width="100%"></a><br><b><code>10-one-line</code></b><br><sub>a single line drawn throughout, the line becomes fill</sub></td>
-<td align="center" width="33%"><a href="docs/films/11-morph.mp4"><img src="docs/films/11-morph.gif" alt="11-morph: a moon becomes an idea" width="100%"></a><br><b><code>11-morph</code></b><br><sub>one outline continuously becoming another</sub></td>
-<td align="center" width="33%"><a href="docs/films/12-collage.mp4"><img src="docs/films/12-collage.gif" alt="12-collage: an owl's newspaper" width="100%"></a><br><b><code>12-collage</code></b><br><sub>scissor-cut edges, halftone, jerky motion</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/10-one-line.mp4"><img src="docs/films/10-one-line.gif" alt="10-one-line: a cycling badge" width="100%"></a><br><b><code>10-one-line</code></b><br><sub>a single line drawn throughout, the line becomes fill</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/11-morph.mp4"><img src="docs/films/11-morph.gif" alt="11-morph: a moon becomes an idea" width="100%"></a><br><b><code>11-morph</code></b><br><sub>one outline continuously becoming another</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/12-collage.mp4"><img src="docs/films/12-collage.gif" alt="12-collage: an owl's newspaper" width="100%"></a><br><b><code>12-collage</code></b><br><sub>scissor-cut edges, halftone, jerky motion</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><a href="docs/films/13-liquid.mp4"><img src="docs/films/13-liquid.gif" alt="13-liquid: liquid metal forms a word" width="100%"></a><br><b><code>13-liquid</code></b><br><sub>blobs that merge and split</sub></td>
-<td align="center" width="33%"><a href="docs/films/14-synthwave.mp4"><img src="docs/films/14-synthwave.gif" alt="14-synthwave: a midnight radio ident" width="100%"></a><br><b><code>14-synthwave</code></b><br><sub>striped sunset, neon grid, chrome type, tape</sub></td>
-<td align="center" width="33%"><a href="docs/films/15-3d-material.mp4"><img src="docs/films/15-3d-material.gif" alt="15-3d-material: a word rises from glass marbles" width="100%"></a><br><b><code>15-3d-material</code></b><br><sub>real materials, soft light, shallow focus (Blender + Cycles)</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/13-liquid.mp4"><img src="docs/films/13-liquid.gif" alt="13-liquid: liquid metal forms a word" width="100%"></a><br><b><code>13-liquid</code></b><br><sub>blobs that merge and split</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/14-synthwave.mp4"><img src="docs/films/14-synthwave.gif" alt="14-synthwave: a midnight radio ident" width="100%"></a><br><b><code>14-synthwave</code></b><br><sub>striped sunset, neon grid, chrome type, tape</sub></td>
+<td align="center" width="33%"><a href="https://win-hao.github.io/mg-video/films/15-3d-material.mp4"><img src="docs/films/15-3d-material.gif" alt="15-3d-material: a word rises from glass marbles" width="100%"></a><br><b><code>15-3d-material</code></b><br><sub>real materials, soft light, shallow focus (Blender + Cycles)</sub></td>
 </tr>
 </table>
 
